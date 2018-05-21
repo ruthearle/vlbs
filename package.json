@@ -1,0 +1,19 @@
+{
+    "name": "openlibrary",
+    "version": "1.0.0",
+    "description": "salesTrip coding challenge",
+    "main": "app.js",
+    "scripts": {
+        "test": "lab"
+    },
+    "author": "Ruth Earle",
+    "license": "ISC",
+    "dependencies": {
+        "hapi": "^17.4.0",
+        "wreck": "^14.0.2"
+    },
+    "devDependencies": {
+        "code": "^5.2.0",
+        "lab": "^15.4.5"
+    }
+}
