@@ -4,15 +4,7 @@ const lab = exports.lab = Lab.script();
 
 const server = require('./../app');
 
-const requestDefaults = {
-  method: 'GET',
-  url: '/',
-  payload: {}
-}
-
 lab.test('is wired correctly', async() => {
-  const request = Object.assign({}, requestDefaults)
-
-  const result = await server.inject(request)
+  const result = await server.inject('/')
   expect(result.statusCode).to.equal(200);
 });

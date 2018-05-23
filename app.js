@@ -1,6 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
+const olClient = require('./src/olClient');
+const mapper = require('./src/helpers/mapper');
 
 const server = Hapi.server({
   port: 3000,
@@ -9,28 +11,29 @@ const server = Hapi.server({
 
 server.route({
   method: 'GET',
+  options: {
+    cors: true,
+  },
   path: '/',
-  handler: (request, h) => {
-    return 'Hello, Ruth!';
+  handler: (request, res) => {
+    //return res.response('Success');
+    return olClient.get().then((data) => {
+      return res.response(mapper(data))
+    });
   }
 });
+const init = async() => {
+  console.log(`Server running on port: ${server.info.uri} `)
+  await server.start();
+};
 
 if (!module.parent) {
-  server.start(error => {
-    process.exit(1);
-  });
+  init();
 }
-
-const init = async() => {
-  await server.start();
-  console.log(`Server running on port: ${server.info.uri} `)
-};
 
 process.on('unhandledRejection', err => {
   console.log(err);
   process.exit(1);
 });
-
-init();
 
 module.exports = server;
