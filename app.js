@@ -1,6 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
+
 const olClient = require('./src/service/olClient');
 const mapFilter = require('./src/helpers/mapFilter');
 
@@ -16,8 +17,10 @@ server.route({
   },
   path: '/',
   handler: (request, res) => {
+    const filter = request.query
+    console.log(filter)
     return olClient.get().then((data) => {
-      return res.response(mapFilter(data))
+      return res.response(mapFilter(data, filter))
     });
   }
 });

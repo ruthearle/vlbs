@@ -1,5 +1,7 @@
-function mapFilter(data, filter) {
-  return Object.keys(data).reduce((memo, id) => {
+const _ = require('lodash');
+
+function mapFilter(data, field) {
+   const mapped =  Object.keys(data).reduce((memo, id) => {
 
     memo.push({
       id: id.substring(5, 20),
@@ -10,6 +12,8 @@ function mapFilter(data, filter) {
 
     return memo
   }, []);
+
+  return _.filter(mapped, field);
 }
 
 module.exports = mapFilter;

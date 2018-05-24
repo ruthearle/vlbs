@@ -68,3 +68,37 @@ lab.experiment('remapping data', () => {
     }]);
   });
 });
+
+lab.experiment('filtering data', () => {
+  const data = {
+    'OLID:OL6732939M': {
+      title: "A farewell to arms",
+      cover: {
+        small: "https://covers.openlibrary.org/b/id/7144309-S.jpg",
+        large: "https://covers.openlibrary.org/b/id/7144309-L.jpg",
+        medium: "https://covers.openlibrary.org/b/id/7144309-M.jpg"
+      },
+      by_statement: "Ernest Hemingway.",
+    },
+    'OLID:OL1234567M': {
+      title: "Darmapada",
+      cover: {
+        small: "https://covers.openlibrary.org/b/id/7144309-S.jpg",
+        large: "https://covers.openlibrary.org/b/id/7144309-L.jpg",
+        medium: "https://covers.openlibrary.org/b/id/7144309-M.jpg"
+      },
+      by_statement: "Buddha",
+    }
+  };
+
+  const filter = { id: 'OL1234567M' };
+
+  lab.test('returned correct values (RENAME THIS TEST)', () => {
+    expect(mapFilter(data, filter)).to.equal([{
+      id:  'OL1234567M',
+      title: "Darmapada",
+      authors: "Buddha",
+      image: "https://covers.openlibrary.org/b/id/7144309-M.jpg",
+    }]);
+  });
+});
