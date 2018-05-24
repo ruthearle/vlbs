@@ -26,7 +26,10 @@ server.route({
   method: 'POST',
   path: '/filter',
   handler: (request, res) => {
-    return res.redirect(`/?id=${request.payload.olid}`)
+    const key = Object.keys(request.payload)[0];
+    const qs = `?${key}=${request.payload[key]}`;
+
+    return res.redirect(`/${qs}`)
   }
 });
 

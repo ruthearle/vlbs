@@ -13,7 +13,7 @@ const requestDefaults = {
   method: 'POST',
   url: '/filter',
   payload: {
-    olid: 'OL0987654'
+    id: 'OL0987654'
   }
 }
 
@@ -24,6 +24,18 @@ lab.experiment('POST /filter', () => {
 
       expect(result.statusCode).to.equal(302);
       expect(result.headers.location).to.equal('/?id=OL0987654');
+    });
+
+    lab.test('with title query string', async() => {
+      const modDefaults = Object.assign({}, requestDefaults, {
+        payload: {
+          title: 'Darmapada'
+        }
+      });
+      const result = await server.inject(modDefaults);
+
+      expect(result.statusCode).to.equal(302);
+      expect(result.headers.location).to.equal('/?title=Darmapada');
     });
   });
 });
