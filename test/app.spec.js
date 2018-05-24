@@ -27,12 +27,12 @@ lab.experiment('POST /filter', () => {
     });
 
     lab.test('with title query string', async() => {
-      const modDefaults = Object.assign({}, requestDefaults, {
+      const request = Object.assign({}, requestDefaults, {
         payload: {
           title: 'Darmapada'
         }
       });
-      const result = await server.inject(modDefaults);
+      const result = await server.inject(request);
 
       expect(result.statusCode).to.equal(302);
       expect(result.headers.location).to.equal('/?title=Darmapada');
