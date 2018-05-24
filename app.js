@@ -16,12 +16,20 @@ server.route({
   },
   path: '/',
   handler: (request, res) => {
-    //return res.response('Success');
     return olClient.get().then((data) => {
       return res.response(mapper(data))
     });
   }
 });
+
+server.route({
+  method: 'POST',
+  path: '/filter',
+  handler: (request, res) => {
+    return res.redirect(`/?id=${request.payload.olid}`)
+  }
+});
+
 const init = async() => {
   console.log(`Server running on port: ${server.info.uri} `)
   await server.start();
