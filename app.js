@@ -2,7 +2,7 @@
 
 const Hapi = require('hapi');
 const olClient = require('./src/service/olClient');
-const mapper = require('./src/helpers/mapper');
+const mapFilter = require('./src/helpers/mapFilter');
 
 const server = Hapi.server({
   port: 3000,
@@ -17,7 +17,7 @@ server.route({
   path: '/',
   handler: (request, res) => {
     return olClient.get().then((data) => {
-      return res.response(mapper(data))
+      return res.response(mapFilter(data))
     });
   }
 });

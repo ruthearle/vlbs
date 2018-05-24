@@ -2,7 +2,7 @@ const { expect } = require('code');
 const Lab = require('lab');
 const lab = exports.lab = Lab.script();
 
-const mapper = require('../../src/helpers/mapper');
+const mapFilter = require('../../src/helpers/mapFilter');
 
 const data = {
   'OLID:OL6732939M': {
@@ -27,8 +27,8 @@ const data = {
 
 lab.experiment('remapping data', () => {
   lab.test('returns the correct values', () => {
-    expect(mapper(data)).to.equal([{
-      id:  'OLID:OL6732939M',
+    expect(mapFilter(data)).to.equal([{
+      id:  'OL6732939M',
       title: "A farewell to arms",
       authors: "Ernest Hemingway.",
       image: "https://covers.openlibrary.org/b/id/7144309-M.jpg",
@@ -60,8 +60,8 @@ lab.experiment('remapping data', () => {
       }
     };
 
-    expect(mapper(newData)).to.equal([{
-      id:  'OLID:OL6732939M',
+    expect(mapFilter(newData)).to.equal([{
+      id:  'OL6732939M',
       title: "A farewell to arms",
       authors: "Ernie",
       image: "https://covers.openlibrary.org/b/id/7144309-M.jpg",
