@@ -22,7 +22,6 @@ lab.experiment('POST /filter', () => {
     lab.test('with id query string', async() => {
       const result = await server.inject(requestDefaults);
 
-      console.log(result.request.query);
       expect(result.statusCode).to.equal(302);
       expect(result.headers.location).to.equal('/?id=OL0987654');
     });
