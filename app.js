@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
-const olClient = require('./src/olClient');
+const olClient = require('./src/service/olClient');
 const mapper = require('./src/helpers/mapper');
 
 const server = Hapi.server({

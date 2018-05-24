@@ -4,7 +4,7 @@ function mapper(data) {
     memo.push({
       id,
       title: data[id].title,
-      authors: data[id].by_statement,
+      authors: data[id].authors ? data[id].authors[0].name : data[id].by_statement,
       image: data[id].cover.medium,
     });
 
