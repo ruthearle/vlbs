@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-function mapFilter(data, field) {
+function mapFilter(data, field = {}) {
    const mapped =  Object.keys(data).reduce((memo, id) => {
 
     memo.push({
