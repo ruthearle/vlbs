@@ -15,10 +15,9 @@ server.route({
   options: {
     cors: true,
   },
-  path: '/',
+  path: '/api/books',
   handler: (request, res) => {
     const filter = request.query
-    console.log(filter)
     return olClient.get().then((data) => {
       return res.response(mapFilter(data, filter))
     });
