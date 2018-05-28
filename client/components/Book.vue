@@ -3,7 +3,7 @@
     <h4>Title: {{title}}</h4>
     <h4>Author/s: {{author}}</h4>
     <img v-bind:src="imageUrl"></image>
-    <p>OLID: {{id}}</p>
+    <p>ID: {{id}}</p>
   </div>
 </template>
 
