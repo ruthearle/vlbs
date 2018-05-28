@@ -1,18 +1,19 @@
 <template>
   <div>
-    <ul id="v-for-books">
-      <li v-for="book in books" :key="book.id">
-        Title: {{book.title}}
-        Author/s: {{book.author}}
-        <img v-bind:src="book.imageUrl"></image>
-        OLID: {{book.id}}
-      </li>
-    </ul>
+    <book
+      v-for="book in books"
+      v-bind:key="book.id"
+      v-bind:title="book.title"
+      v-bind:author="book.author"
+      v-bind:id="book.id"
+      v-bind:imageUrl="book.imageUrl">
+    </book>
   </div>
 </template>
 
 <script type="text/javascript" charset="utf-8">
   import axios from 'axios';
+  import BookComponent from './Book.vue';
   import { eventBus } from '../main';
 
   export default {
@@ -32,6 +33,9 @@
       eventBus.$on('dataUpdated', (data) => {
         this.books = data;
       });
+    },
+    components: {
+      book: BookComponent
     }
   }
 </script>
