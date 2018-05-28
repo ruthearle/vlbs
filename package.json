@@ -4,16 +4,37 @@
     "description": "salesTrip coding challenge",
     "main": "app.js",
     "scripts": {
+        "start": "node app.js",
         "test": "lab"
     },
     "author": "Ruth Earle",
     "license": "ISC",
     "dependencies": {
         "hapi": "^17.4.0",
+        "inert": "^5.1.0",
         "wreck": "^14.0.2"
     },
     "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.4",
+        "babel-polyfill": "^6.26.0",
         "code": "^5.2.0",
-        "lab": "^15.4.5"
+        "css-loader": "^0.28.11",
+        "eslint": "^4.19.1",
+        "eslint-friendly-formatter": "^3.0.0",
+        "eslint-plugin-html": "^4.0.1",
+        "eslint-plugin-import": "^2.6.1",
+        "eslint-plugin-node": "^6.0.1",
+        "eslint-plugin-promise": "^3.5.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "hapi-webpack-plugin": "^3.0.0",
+        "lab": "^15.4.5",
+        "prettier": "^1.12.0",
+        "vue": "^2.5.16",
+        "vue-html-loader": "^1.2.4",
+        "vue-loader": "^14.2.2",
+        "vue-template-compiler": "^2.5.16",
+        "webpack": "^4.9.1",
+        "webpack-cli": "^2.1.4"
     }
 }

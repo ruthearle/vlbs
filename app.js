@@ -1,6 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
+const Inert = require('inert');
+const WebpackPlugin = require('hapi-webpack-plugin');
 
 const olClient = require('./src/service/olClient');
 const mapFilter = require('./src/helpers/mapFilter');
@@ -10,38 +12,57 @@ const server = Hapi.server({
   host: 'localhost'
 });
 
-server.route({
-  method: 'GET',
-  options: {
-    cors: true,
-  },
-  path: '/api/books',
-  handler: (request, res) => {
-    const filter = request.query
-    return olClient.get().then((data) => {
-      return res.response(mapFilter(data, filter))
-    });
-  }
-});
+const start = async() => {
+  await server.register([
+    {
+      plugin: WebpackPlugin,
+      options: './webpack.config.js'
+    },
+    {
+      plugin: Inert
+    },
+  ]);
 
-server.route({
-  method: 'POST',
-  path: '/filter',
-  handler: (request, res) => {
-    const key = Object.keys(request.payload)[0];
-    const qs = `?${key}=${request.payload[key]}`;
+  server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory: {
+        path: ['static'],
+        listing: false,
+        index: ['index.html']
+      }
+    }
+  });
 
-    return res.redirect(`/${qs}`)
-  }
-});
+  server.route({
+    method: 'GET',
+    path: '/api-books',
+    handler: (request, res) => {
+      const filter = request.query
+      return olClient.get().then((data) => {
+        return res.response(mapFilter(data, filter))
+      });
+    }
+  });
 
-const init = async() => {
+  server.route({
+    method: 'POST',
+    path: '/filter',
+    handler: (request, res) => {
+      const key = Object.keys(request.payload)[0];
+      const qs = `?${key}=${request.payload[key]}`;
+
+      return res.redirect(`/${qs}`)
+    }
+  });
+
   console.log(`Server running on port: ${server.info.uri} `)
   await server.start();
 };
 
 if (!module.parent) {
-  init();
+  start();
 }
 
 process.on('unhandledRejection', err => {
