@@ -30,8 +30,8 @@ lab.experiment('remapping data', () => {
     expect(mapFilter(data)).to.equal([{
       id: 'OL6732939M',
       title: 'A farewell to arms',
-      authors: 'Ernest Hemingway.',
-      image: 'https://covers.openlibrary.org/b/id/7144309-M.jpg'
+      author: 'Ernest Hemingway.',
+      imageUrl: 'https://covers.openlibrary.org/b/id/7144309-M.jpg'
     }]);
   });
 
@@ -63,8 +63,8 @@ lab.experiment('remapping data', () => {
     expect(mapFilter(newData)).to.equal([{
       id: 'OL6732939M',
       title: 'A farewell to arms',
-      authors: 'Ernie',
-      image: 'https://covers.openlibrary.org/b/id/7144309-M.jpg'
+      author: 'Ernie',
+      imageUrl: 'https://covers.openlibrary.org/b/id/7144309-M.jpg'
     }]);
   });
 });
@@ -97,8 +97,8 @@ lab.experiment('filtering data', () => {
     expect(mapFilter(data, filter)).to.equal([{
       id: 'OL1234567M',
       title: 'Darmapada',
-      authors: 'Buddha',
-      image: 'https://covers.openlibrary.org/b/id/7144309-M.jpg'
+      author: 'Buddha',
+      imageUrl: 'https://covers.openlibrary.org/b/id/7144309-M.jpg'
     }]);
   });
 });
