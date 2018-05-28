@@ -25,7 +25,7 @@ const start = async() => {
 
   server.route({
     method: 'GET',
-    path: '/{param?}',
+    path: '/{param*}',
     handler: {
       directory: {
         path: ['static'],
@@ -40,6 +40,7 @@ const start = async() => {
     path: '/api/books',
     handler: (request, res) => {
       const filter = request.query
+
       return olClient.get().then((data) => {
         return res.response(mapFilter(data, filter))
       });
@@ -48,6 +49,9 @@ const start = async() => {
 
   server.route({
     method: 'POST',
+    options: {
+      cors: true
+    },
     path: '/filter',
     handler: (request, res) => {
       const key = Object.keys(request.payload)[0];
