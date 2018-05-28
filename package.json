@@ -16,7 +16,6 @@
         "wreck": "^14.0.2"
     },
     "devDependencies": {
-        "babel-core": "^6.26.3",
         "babel-loader": "^7.1.4",
         "babel-polyfill": "^6.26.0",
         "code": "^5.2.0",
