@@ -25,15 +25,15 @@
     methods: {
       handleSubmit() {
         const idRegex = /([o][l]\d*[m])/gi
-        const term = this.term;
-        const ref = term.match(idRegex) ? { id: term } : { title: term }
-        return axios.post('/filter', ref)
+        const ref = this.term.match(idRegex) ? { id: this.term } : { title: this.term }
+
+        axios.post('/filter', ref)
           .then(res => {
             this.data = res.data;
             eventBus.$emit('dataUpdated', this.data);
           });
       }
-    },
+    }
   }
 </script>
 
