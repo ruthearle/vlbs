@@ -12,51 +12,54 @@ const server = Hapi.server({
   host: 'localhost'
 });
 
-const start = async() => {
-  await server.register([
-    {
-      plugin: WebpackPlugin,
-      options: './webpack.config.js'
-    },
-    {
-      plugin: Inert
-    },
-  ]);
+//const start = async() => {
+  //await server.register([
+    //{
+      //plugin: WebpackPlugin,
+      //options: './webpack.config.js'
+    //},
+    //{
+      //plugin: Inert
+    //},
+  //]);
 
-  server.route({
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-      directory: {
-        path: ['static'],
-        listing: false,
-        index: ['index.html']
-      }
-    }
-  });
+  //server.route({
+    //method: 'GET',
+    //path: '/{param?}',
+    //handler: {
+      //directory: {
+        //path: ['static'],
+        //listing: false,
+        //index: ['index.html']
+      //}
+    //}
+  //});
 
   server.route({
     method: 'GET',
     path: '/api-books',
     handler: (request, res) => {
       const filter = request.query
+      console.log({ request });
+      console.log('helo');
       return olClient.get().then((data) => {
         return res.response(mapFilter(data, filter))
       });
     }
   });
 
-  server.route({
-    method: 'POST',
+server.route({
+  method: 'POST',
     path: '/filter',
     handler: (request, res) => {
       const key = Object.keys(request.payload)[0];
       const qs = `?${key}=${request.payload[key]}`;
 
-      return res.redirect(`/${qs}`)
+      return res.redirect(`/api/books${qs}`)
     }
   });
 
+const start = async() => {
   console.log(`Server running on port: ${server.info.uri} `)
   await server.start();
 };

@@ -1,10 +1,18 @@
 <template>
-  <h1 id="app-headline">Hello all</h1>
+  <div>
+    <h1 id="app-headline">Hello all</h1>
+    <books></books>
+  </div>
 </template>
 
 <script type="text/javascript" charset="utf-8">
+  import Books from './Books.vue';
+
   export default {
     name: 'App',
+    components: {
+      books: Books
+    },
     data: function () {
       return {}
     }
