@@ -62,4 +62,4 @@ typings/
 
 # vscode customisation
 .vscode
-./build/main.js
+build
