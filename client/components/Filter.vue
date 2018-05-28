@@ -1,15 +1,41 @@
 <template>
-<div>
-  
-</div>
+    <form v-on:submit.prevent @submit="handleSubmit">
+      <p>
+        <label for="searchfilter">Filter Results</label>
+        <input type="text" placeholder="Filter by title or id" name="filter" id="filter" v-model="term">
+      </p>
+      <p>
+        <input type="submit" value="submit">
+      </p>
+    </form>
 </template>
 
 <script type="text/javascript" charset="utf-8">
-  export default {
+  import axios from 'axios';
+  import { eventBus } from '../main';
 
+  export default {
+    name: 'FilterResults',
+    data() {
+      return {
+        term: undefined,
+        data: []
+      }
+    },
+    methods: {
+      handleSubmit() {
+        const idRegex = /([o][l]\d*[m])/gi
+        const term = this.term;
+        const ref = term.match(idRegex) ? { id: term } : { title: term }
+        return axios.post('/filter', ref)
+          .then(res => {
+            this.data = res.data;
+            eventBus.$emit('dataUpdated', this.data);
+          });
+      }
+    },
   }
 </script>
 
 <style type="text/css" media="screen">
-  
 </style>

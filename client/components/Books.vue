@@ -13,6 +13,7 @@
 
 <script type="text/javascript" charset="utf-8">
   import axios from 'axios';
+  import { eventBus } from '../main';
 
   export default {
     name: 'Books',
@@ -26,6 +27,11 @@
       return axios.get('/api/books')
         .then((res) => this.books = res.data,
           (err) => this.error = 'Error fetching books');
+    },
+    updated: function() {
+      eventBus.$on('dataUpdated', (data) => {
+        this.books = data;
+      });
     }
   }
 </script>

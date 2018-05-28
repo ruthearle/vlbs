@@ -1,6 +1,8 @@
-import Vue from 'vue';
 
+import Vue from 'vue';
 import AppComponent from './components/App.vue';
+
+export const eventBus = new Vue();
 
 const vm = new Vue({
   el: '#app',

@@ -1,17 +1,24 @@
 <template>
   <div>
-    <h1 id="app-headline">Hello all</h1>
-    <books></books>
+    <h1 id="app-headline">Very Limited Book Store (VLBS)</h1>
+    <div>
+      <filter-results></filter-results/>
+    </div>
+    <div id="books">
+      <books></books>
+    </div>
   </div>
 </template>
 
 <script type="text/javascript" charset="utf-8">
-  import Books from './Books.vue';
+  import BooksComponent from './Books.vue';
+  import FilterComponent from './Filter.vue';
 
   export default {
     name: 'App',
     components: {
-      books: Books
+      'filter-results': FilterComponent,
+      books: BooksComponent
     },
     data: function () {
       return {}
