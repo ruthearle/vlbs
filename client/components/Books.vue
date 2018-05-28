@@ -1,16 +1,13 @@
 <template>
-  <div id="books">
-    <ul id="library" v-if="books">
+  <div>
+    <ul id="v-for-books">
       <li v-for="book in books" :key="book.id">
+        Title: {{book.title}}
+        Author/s: {{book.author}}
         <img v-bind:src="book.imageUrl"></image>
         OLID: {{book.id}}
-        Title: {{book.title}}
-        Author/s: {{book.authors}}
       </li>
     </ul>
-    <p v-else>
-      {{error}}
-    </p>
   </div>
 </template>
 
